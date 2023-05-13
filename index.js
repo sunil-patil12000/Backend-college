@@ -14,6 +14,21 @@ require("dotenv").config();
 const multer = require("multer");
 const GetData = require("./controller/GetData");
 const AllData = require("./controller/AllData");
+const OTPgen = require("./controller/OTPgen");
+const VerifyOTP = require("./controller/VerifyOTP");
+const session = require("express-session");
+
+var otpdata;
+
+app.set("trust proxy", 1);
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,8 +42,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use("/uploads", express.static("uploads"));
-app.get('/alldata',AllData)
+app.get("/alldata", AllData);
 app.post("/getdata", GetData);
+
+app.post("/otpgen", OTPgen);
+app.post("/otpverify", VerifyOTP);
 
 app.post("/login", LoginC);
 app.post("/admission", upload.single("image"), AdmissionC);
