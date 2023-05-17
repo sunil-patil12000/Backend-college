@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
+    cb(null,file.fieldname+ Date.now() + "-" + file.originalname);
   },
 });
 
@@ -49,7 +49,16 @@ app.post("/otpgen", OTPgen);
 app.post("/otpverify", VerifyOTP);
 
 app.post("/login", LoginC);
-app.post("/admission", upload.single("image"), AdmissionC);
+app.post(
+  "/admission",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "aadhaarimg", maxCount: 1 },
+    { name: "pymc", maxCount: 1 },
+    { name: "ci", maxCount: 1 },
+  ]),
+  AdmissionC
+);
 
 app.post("/register", RegisterC);
 

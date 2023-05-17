@@ -3,7 +3,8 @@ const Admissions = require("../Model/Admissionsche");
 module.exports = async (req, res) => {
   try {
     let old = await Admissions.findOne({ aadhaar: req.body.aadhaar });
-    console.log(old);
+    console.log(req.files.ci[0].originalname);
+    // res.json(req.files.ci)
     if (!old) {
       const admissions = new Admissions({
         lid: req.body.lid,
@@ -20,10 +21,30 @@ module.exports = async (req, res) => {
         phone: req.body.phoneNumber,
         email: req.body.email,
         aadhaar: req.body.aadhaarNumber,
-        filename: req.file.filename,
-        path: req.file.path,
-        originalname: req.file.originalname,
-        mimetype: req.file.mimetype,
+        photo: {
+          filename: req.files.image[0].filename,
+          path: req.files.image[0].path,
+          originalname: req.files.image[0].originalname,
+          mimetype: req.files.image[0].mimetype,
+        },
+        aadhaarimg: {
+          filename: req.files.aadhaarimg[0].filename,
+          path: req.files.aadhaarimg[0].path,
+          originalname: req.files.aadhaarimg[0].originalname,
+          mimetype: req.files.aadhaarimg[0].mimetype,
+        },
+        pymc: {
+          filename: req.files.pymc[0].filename,
+          path: req.files.pymc[0].path,
+          originalname: req.files.pymc[0].originalname,
+          mimetype: req.files.pymc[0].mimetype,
+        },
+        ci: {
+          filename: req.files.ci[0].filename,
+          path: req.files.ci[0].path,
+          originalname: req.files.ci[0].originalname,
+          mimetype: req.files.ci[0].mimetype,
+        },
       });
       const data = await admissions.save();
       res.setHeader("Content-Type", "multipart/form-data");

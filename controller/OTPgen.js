@@ -4,6 +4,8 @@ const session = require("express-session");
 
 module.exports = (req, res) => {
   const { email } = req.body;
+
+  console.log(email);
   const otp = otpGenerator.generate(6, {
     digits: true,
     lowerCaseAlphabets: false,
@@ -35,7 +37,8 @@ module.exports = (req, res) => {
       console.log("OTP sent successfully");
 
       otpdata = otp;
-      res.status(200).json({ message: "OTP sent successfully" });
+      res.status(200).json({ message: "OTP sent successfully" ,
+    otp: otpdata});
     }
   });
 };

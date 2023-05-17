@@ -57,10 +57,21 @@ let Admissionschem = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    filename: String,
-    path: String,
-    originalname: String,
-    mimetype: String,
+    photo: {
+      type: Object,
+    },
+    aadhaarimg: {
+      type: Object,
+    },
+    pymc: { type: Object },
+    ci: {
+      type: Object,
+    },
+
+    // filename: String,
+    // path: String,
+    // originalname: String,
+    // mimetype: String,
   },
   { timestamps: true }
 );
