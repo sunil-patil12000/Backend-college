@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
         permanentaddress: req.body.permanentAddress,
         previous_year_percentage: req.body.previousYearMarks,
         previous_year_class: req.body.previousClass,
+        Board: req.body.board,
         dateofbirth: req.body.dateOfBirth,
         phone: req.body.phoneNumber,
         email: req.body.email,

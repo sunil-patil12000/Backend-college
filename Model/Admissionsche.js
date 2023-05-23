@@ -39,6 +39,9 @@ let Admissionschem = new mongoose.Schema(
       type: String,
       required: true,
     },
+    Board:{
+      type:String,
+    },
     dateofbirth: {
       type: String,
       required: true,
