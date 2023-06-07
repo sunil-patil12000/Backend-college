@@ -39,8 +39,8 @@ let Admissionschem = new mongoose.Schema(
       type: String,
       required: true,
     },
-    Board:{
-      type:String,
+    Board: {
+      type: String,
     },
     dateofbirth: {
       type: String,
@@ -53,7 +53,6 @@ let Admissionschem = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
     },
     aadhaar: {
       type: String,
