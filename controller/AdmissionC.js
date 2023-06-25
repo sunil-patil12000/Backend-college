@@ -5,13 +5,14 @@ module.exports = async (req, res) => {
     let old = await Admissions.findOne({ aadhaar: req.body.aadhaar });
     console.log(req.files.ci[0].originalname);
     // res.json(req.files.ci)
+    console.log(req.body);
     if (!old) {
       const admissions = new Admissions({
         lid: req.body.lid,
         firstname: req.body.firstName,
         lastname: req.body.lastName,
         fathername: req.body.fatherName,
-        motherrname: req.body.motherName,
+        mothername: req.body.motherName,
         gender: req.body.gender,
         cuttentaddress: req.body.currentAddress,
         permanentaddress: req.body.permanentAddress,
